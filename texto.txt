@@ -1,0 +1,42 @@
+class monitor(object)
+    fun cars (direction)
+        self.mutex.acquire
+        if direction == North
+            wait_until(cars.signal(South_free) and ped.signal(free))
+            passing
+            cars.signal(not North_free)
+            ped.signal(not free)
+        else
+            wait_until(cars.signal(North_free) and ped.signal(free))
+            passing
+            cars.signal(not South_free)
+            ped.signal(not free)
+           
+           
+
+
+
+
+class Monitor
+    fun __init__(self)
+        self.mutex = mp.Lock()
+        self.car_N = mp.BoundedSemaphore(1)
+        self.car_S = mp.BoundedSemaphore(1)
+        self.ped = mp.BoundedSemaphore(1)
+        self.patata = mp.Array('i', 3, [0, 0, 0])
+    fun wants_enter_car(self, direction)
+        self.ped.acquire
+        if direction == North hacer
+            self.car_S.acquire
+            self.patata[0] + 1
+        else hacer
+            self.patata[1] + 1
+        self.mutex.releas
+    fun leaves_car(self, direction)
+        self.mutex.acquire
+        if direction == North hacer
+            self.patata[0] - 1
+        else hacer
+            self.patata[1] - 1 
+        
+            
